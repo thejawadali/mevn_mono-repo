@@ -1,0 +1,27 @@
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+    "title": "Buy groceries",
+    "description": "Milk, bread, eggs",
+    "completed": false
+}
+###
+
+GET http://localhost:3000/todos
+###
+GET http://localhost:3000/todos/644a2168155923ddf340d040
+###
+PUT http://localhost:3000/todos/644a2168155923ddf340d040
+Content-Type: application/json
+
+{
+    "title": "Buy groceries",
+    "description": "Milk, bread, eggs",
+    "completed": true
+}
+
+###
+
+DELETE http://localhost:3000/todos/644a2168155923ddf340d040
+
