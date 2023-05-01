@@ -15,7 +15,7 @@ app.use( bodyParser.json() )
 app.use( cors() )
 
 
-const db = mongoose.connect( 'mongodb://localhost:27017/docker-tasks', {
+const db = mongoose.connect( 'mongodb://mongodb:27017/docker-tasks', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 } )

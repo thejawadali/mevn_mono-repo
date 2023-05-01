@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  mongodb: #containers and connection url should be same as well
+    image: 'mongo' #name of image you want to run container from
+    volumes:
+      - data:/data/db
+    container_name: mongo
+    # environment: #environment variables
+    #   - name=value
+    # env_file:
+    #   - ./env/mongo.env #relative path to .env file in you project
+  backend:
+    build: ./todos-api #relative path to find Dockerfile to build image from
+    environment:
+      - PORT=3000
+    ports:
+      - '3000:3000'
+    volumes:
+      - data:/app/logs
+      - ./todos-api:/api
+    depends_on:
+      - mongodb
+    container_name: todos_api
+  frontend:
+    build: ./todos-frontend #relative path to find Dockerfile to build image from
+    environment:
+      - PORT=8080
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./todos-frontend:/frontend
+    container_name: todos_frontend
+    depends_on:
+      - backend
+
+volumes:
+  data: # to tell docker about volume we use in containers, we should mention volume names here as well
